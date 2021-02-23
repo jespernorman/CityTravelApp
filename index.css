@@ -18,11 +18,12 @@ section{
 }
 
 nav {
+    display: block;
     text-align: right;
     color: salmon;
     nav-index: auto;
 }
-.search input[type=text] {
+.search Input[type=text] {
     padding: 10px;
     font-size: 17px;
     border: 1px solid grey;
@@ -30,3 +31,11 @@ nav {
     width: 80%;
     background: #f1f1f1;
   }
+
+  main {
+      background-color: lightgrey;
+  }
+
+footer {
+    background-color :rgb(76, 158, 235);
+}
