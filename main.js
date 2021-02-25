@@ -62,10 +62,23 @@ function getAttractionsData(searchInput, date) {
 function readAttractionData(attractionData) {
    
     console.log(attractionData);
-    //document.querySelector("#imgid").src = "https://ss3.4sqi.net/img/categories_v2/travel/hotel_bg_88.png"
-    document.querySelector("#attractionname").innerText = "Attractionname: " + attractionData.response.venues[0].name
-    document.querySelector("#attractionadress").innerText = "Adress: " + attractionData.response.venues[0].location.formattedAddress
-    document.querySelector("#imgid").src = attractionData.response.venues[0].categories[0].icon.prefix+"bg_32"+attractionData.response.venues[0].categories[0].icon.suffix
+    
+    var attractionContainer = document.querySelector("attractioncontainer").innerText = attractionData.venues;
+    var maxAttraction = 10;
+    var attractionName = document.querySelector("#attractionname").innerText = "Attractionname: " + attractionData.response.venues[0].name
+    var attractionAdress = document.querySelector("#attractionadress").innerText = "Adress: " + attractionData.response.venues[0].location.formattedAddress
+    var attractionIkon = document.querySelector("#imgid").src = attractionData.response.venues[0].categories[0].icon.prefix+"bg_32"+attractionData.response.venues[0].categories[0].icon.suffix
+
+    attractionData.forEach(attractioncontainer => console.log(attractionContainer)) 
+    {     
+        console.log(attractioncontainer);
+
+    };
+    // attractionContainer.attractionName + attractionContainer.attractionAdress + attractioncontainer.attractionIkon);
+
+    // document.querySelector("#attractionname").innerText = "Attractionname: " + attractionData.response.venues[0].name
+    // document.querySelector("#attractionadress").innerText = "Adress: " + attractionData.response.venues[0].location.formattedAddress
+    // document.querySelector("#imgid").src = attractionData.response.venues[0].categories[0].icon.prefix+"bg_32"+attractionData.response.venues[0].categories[0].icon.suffix
 }
 /*
 class search {
