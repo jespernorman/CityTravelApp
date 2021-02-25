@@ -3,8 +3,27 @@ function getData() {
     var searchInput = document.getElementById("searchInput").value;
     var date = getDate();
 
-    getWeatherData(searchInput);
-    getAttractionsData(searchInput, date )
+    var onlyWeatherCheckbox = document.querySelector("#onlyweather");
+    var onlyAttractionsCheckbox = document.querySelector("#onlyattractions");
+    var filterAlphabeticallyCheckbox = document.querySelector("#filteralphabetically");
+
+    if (onlyWeatherCheckbox.checked == true && onlyAttractionsCheckbox.checked == false) {
+
+        getWeatherData(searchInput);
+    }
+    else if (onlyAttractionsCheckbox.checked == true && onlyWeatherCheckbox.checked == false) {
+
+        getAttractionsData(searchInput, date);
+    }
+    else if (onlyAttractionsCheckbox.checked == true && onlyWeatherCheckbox.checked == true) {
+
+        getWeatherData(searchInput);
+        getAttractionsData(searchInput, date);
+    }
+    
+
+
+    var main = document.querySelector("#maincontainer");
 }
 function getDate() {
     var date = new Date();
@@ -55,50 +74,35 @@ function getAttractionsData(searchInput, date) {
     fetch("https://api.foursquare.com/v2/venues/search?client_id=N1QKMDBXOVR3JOEYXQAI3RKLS245YZC5JCHGFGZFEOX50F4F&client_secret=CNEQGCG5PY31BWZPLI1UPOP3XSZMQHNVVXDGYQG5SEQNT3GI&v="+date+"&near="+searchInput+"&intent=browse&radius=10000&limit=10")
         .then(response => response.json())
         .then(attractionData => {
-            readAttractionData(attractionData);
+            //readAttractionData(attractionData);
+            readAllAttractionData(attractionData);
         })
 }
 
-function readAttractionData(attractionData) {
+// function readAttractionData(attractionData) {
    
-    console.log(attractionData);
+//     console.log(attractionData);
     
-    var attractionContainer = document.querySelector("attractioncontainer").innerText = attractionData.venues;
-    var maxAttraction = 10;
-    var attractionName = document.querySelector("#attractionname").innerText = "Attractionname: " + attractionData.response.venues[0].name
-    var attractionAdress = document.querySelector("#attractionadress").innerText = "Adress: " + attractionData.response.venues[0].location.formattedAddress
-    var attractionIkon = document.querySelector("#imgid").src = attractionData.response.venues[0].categories[0].icon.prefix+"bg_32"+attractionData.response.venues[0].categories[0].icon.suffix
+//     var attractionName = document.querySelector("#attractionname").innerText = "Attractionname: " + attractionData.response.venues[0].name
+//     var attractionAdress = document.querySelector("#attractionadress").innerText = "Adress: " + attractionData.response.venues[0].location.formattedAddress
+//     var attractionIkon = document.querySelector("#imgid").src = attractionData.response.venues[0].categories[0].icon.prefix+"bg_32"+attractionData.response.venues[0].categories[0].icon.suffix
+// }
 
-    attractionData.forEach(attractioncontainer => console.log(attractionContainer)) 
-    {     
-        console.log(attractioncontainer);
+function readAllAttractionData(attractionData) {
 
-    };
-    // attractionContainer.attractionName + attractionContainer.attractionAdress + attractioncontainer.attractionIkon);
 
-    // document.querySelector("#attractionname").innerText = "Attractionname: " + attractionData.response.venues[0].name
-    // document.querySelector("#attractionadress").innerText = "Adress: " + attractionData.response.venues[0].location.formattedAddress
-    // document.querySelector("#imgid").src = attractionData.response.venues[0].categories[0].icon.prefix+"bg_32"+attractionData.response.venues[0].categories[0].icon.suffix
+    var attractionContainer = document.querySelector("#attractioncontainer");
+    var venues = attractionData.response.venues;
+    let html = '';
+
+    venues.forEach(venue => {
+        let htmlSegment = '<div class="allattractionbox">' + 
+                            '<div>' + venue.name + '</div>' +
+                            '<img src=' + venue.categories[0].icon.prefix + "bg_32" + venue.categories[0].icon.suffix + '>' +
+                            '<div>' + venue.location.formattedAddress + '</div>' +
+                        '</div>';
+        html += htmlSegment;
+
+    });
+    attractionContainer.innerHTML = html;
 }
-/*
-class search {
-
-    constructor(searchInput) {
-
-    }
-    executeSearch() {
-        fetch('api.openweathermap.org/data/2.5/weather?q={searchInput}&appid={8d141e7ff86b157ab911daed7c1b290b}')
-        .then(Response => {
-            if(Response.ok) {
-                return Response.json()
-            }
-            throw new error('Request failed')
-        }, networkError => {
-            console.log(networkError.message);
-        })
-        .then(jsonResponse => {
-            console.log(jsonRespose)
-        })        
-    }
-}*/
-
