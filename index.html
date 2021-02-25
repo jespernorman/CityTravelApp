@@ -5,6 +5,7 @@
     </head>
     <meta charset="utf-8">
     <link rel="Stylesheet" href="index.css">
+    <script type="text/javascript" src="main.js"></script>
     </body>
     </body>
         <header>
@@ -15,7 +16,7 @@
         </header>
     </body>
 
-</html> 
+</html>
 <p>
 
 </p>
@@ -23,12 +24,10 @@
 <section>
     <h3>Type in: </h3>
    
-    <form class="Search" action="/action_page.php" style="margin:auto;max-width:300px">
-    <input type="text" placeholder="Search.." name="search2">  <script>
-        document.executeSearch()
-        </script>
-    <button type="submit"><i class="fa fa-search"></i></button>
-    </form>
+    <!-- <form class="Search" style="margin:auto;max-width:300px"> -->
+    <input type="text" id="searchInput" placeholder="Search.." name="search2"> 
+    <button type="button" onclick="getData();"> search </button>
+    <!-- </form> -->
 </section>
 
 <body> 
@@ -43,9 +42,22 @@
 
 
 <main>
-<p>
+    <p id="weatherdata">  </p>
+      <div id="city"></div>
+      <div id="weather"></div>
+      <div id="temp"></div>
+      <div id="wind"></div>
+    <p>
 
-</p>
+    </p>
+
+    <p id="Attractiondata"> </p>
+        <div id="attractionname"></div>
+        <div id="attractionadress"></div>
+        <img id="imgid"></img>
+
+       <div id="Attractioncontainer"></div>
+        
 </main>
 
 <footer>
