@@ -19,43 +19,32 @@
 
     <body> 
         <section>
-            <h3>Type in: </h3>
-        
-            <!-- <form class="Search" style="margin:auto;max-width:300px"> -->
-            <input type="text" id="searchInput" placeholder="Search.." name="search2"> 
-            <button type="button" onclick="getData();"> search </button>
-            <!-- </form> -->
+                <h3>Type in: </h3>          
+                <input type="text" id="searchInput" placeholder="Search.." name="search2"> 
+                <button type="button" onclick="getData();"> GO </button>
+
+                <div id="checkboxstyle">
+                    <li><h2 id="filter"> Filters: </h2></li>
+                    <li><input type ="checkbox" name="category" value="Only weather" id="onlyweather"> Only weather</li>
+                    <li><input type ="checkbox" name="category" value="Only attractions" id="onlyattractions"> Only attractions</li>
+                    <li><input type ="checkbox" name="category" value="Filter alphabetically" id="filteralphabetically"> Filter alphabetically</li>
+                </div>
         </section>
-
-        <nav>
-            <h2>Filters: </h2>
-        
-            <input type ="checkbox" name="category" value="Only weather" id="onlyweather"> Only weather
-            <input type ="checkbox" name="category" value="Only attractions" id="onlyattractions"> Only attractions
-            <input type ="checkbox" name="category" value="Filter alphabetically" id="filteralphabetically"> Filter alphabetically
-        </nav>
-
         <main id="maincontainer"> 
-            <div class="weatherbox">
-                <div id="city"></div>
-                <div id="weather"></div>  
+           <h2><div id="city"></div></h2>
+            <div id="weathercontainer">
+                <div id="day"></div>
                 <div id="temp"></div>
                 <div id="wind"></div>
+                <div id="weather"></div>
+                <img id="weathericon"><img>  
             </div>
-
-            <!-- <div class="attractionbox">
-                <div id="attractionname"></div>
-                <div id="attractionadress"></div>
-                <img id="imgid"></img>
-            </div> -->
-
             <div id="attractioncontainer"></div>
-
         </main>
 
         <footer>
             <p>
-
+                made by jesper! :)
             </p>
         </footer>
     </body>

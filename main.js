@@ -3,27 +3,30 @@ function getData() {
     var searchInput = document.getElementById("searchInput").value;
     var date = getDate();
 
+    document.getElementById("maincontainer").style.display = "block" ;
+    
     var onlyWeatherCheckbox = document.querySelector("#onlyweather");
     var onlyAttractionsCheckbox = document.querySelector("#onlyattractions");
     var filterAlphabeticallyCheckbox = document.querySelector("#filteralphabetically");
 
     if (onlyWeatherCheckbox.checked == true && onlyAttractionsCheckbox.checked == false) {
-
+        document.getElementById("weathercontainer").style.display = "block";
+        document.getElementById("attractioncontainer").style.display = "none";
         getWeatherData(searchInput);
     }
     else if (onlyAttractionsCheckbox.checked == true && onlyWeatherCheckbox.checked == false) {
-
+        document.getElementById("attractioncontainer").style.display = "block";
+        document.getElementById("weathercontainer").style.display = "none";
         getAttractionsData(searchInput, date);
     }
-    else if (onlyAttractionsCheckbox.checked == true && onlyWeatherCheckbox.checked == true) {
-
+    else if (onlyAttractionsCheckbox.checked == false && onlyWeatherCheckbox.checked == false) {
+        document.getElementById("weathercontainer").style.display = "block";
         getWeatherData(searchInput);
         getAttractionsData(searchInput, date);
     }
-    
-
-
-    var main = document.querySelector("#maincontainer");
+    else {
+        document.getElementById("maincontainer").innerText = "No data to show!"
+    }
 }
 function getDate() {
     var date = new Date();
@@ -48,7 +51,6 @@ function getDate() {
     return day;
 }
 function getWeatherData(searchInput) {
-    alert(searchInput);
     console.log(searchInput);
 
      fetch("https://api.openweathermap.org/data/2.5/weather?q="+searchInput+"&appid=8d141e7ff86b157ab911daed7c1b290b&mode=JSON&units=metric")
@@ -61,10 +63,14 @@ function getWeatherData(searchInput) {
 function readWeatherData(data) {
 
    console.log(data)
-   document.querySelector("#city").innerText = "City: " + data.name
-   document.querySelector("#weather").innerText = data.weather[0].description
+   var day = getDay();
+
+   document.querySelector("#city").innerText = data.name
+   document.querySelector("#day").innerText = day
    document.querySelector("#temp").innerText = data.main.temp +' degrees celsius'
    document.querySelector("#wind").innerText = data.wind.speed + ' m/s,  ' + data.wind.deg + ' degrees'
+   document.querySelector("#weather").innerText = data.weather[0].description
+   document.querySelector("#weathericon").src = data.weather[0].icon
 }
 
 
@@ -74,19 +80,9 @@ function getAttractionsData(searchInput, date) {
     fetch("https://api.foursquare.com/v2/venues/search?client_id=N1QKMDBXOVR3JOEYXQAI3RKLS245YZC5JCHGFGZFEOX50F4F&client_secret=CNEQGCG5PY31BWZPLI1UPOP3XSZMQHNVVXDGYQG5SEQNT3GI&v="+date+"&near="+searchInput+"&intent=browse&radius=10000&limit=10")
         .then(response => response.json())
         .then(attractionData => {
-            //readAttractionData(attractionData);
             readAllAttractionData(attractionData);
         })
 }
-
-// function readAttractionData(attractionData) {
-   
-//     console.log(attractionData);
-    
-//     var attractionName = document.querySelector("#attractionname").innerText = "Attractionname: " + attractionData.response.venues[0].name
-//     var attractionAdress = document.querySelector("#attractionadress").innerText = "Adress: " + attractionData.response.venues[0].location.formattedAddress
-//     var attractionIkon = document.querySelector("#imgid").src = attractionData.response.venues[0].categories[0].icon.prefix+"bg_32"+attractionData.response.venues[0].categories[0].icon.suffix
-// }
 
 function readAllAttractionData(attractionData) {
 

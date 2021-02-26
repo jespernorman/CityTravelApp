@@ -3,64 +3,52 @@ header {
     text-align: center;
     font-size: medium;
     color: rgb(28, 32, 28);
+    border: 2px solid black;
     }
 
 h2 {
-    color: royalblue;
+    color: black;
+    font-weight: 900;
 }
-h3 {
-    text-align: center;
-    color: royalblue;
-}
+
 section{
-    text-align: center;
-     
+    border: 2px solid black;
+    text-align: center;   
+    marker: none;  
 }
 
-nav {
-    display: block;
+li {
     text-align: right;
-    color: salmon;
-    nav-index: auto;
+    padding: 5px;
+    list-style-type: none;
+    marker: none;
 }
-.search Input[type=text] {
-    padding: 10px;
-    font-size: 17px;
-    border: 1px solid grey;
-    float: left;
-    width: 80%;
-    background: #f1f1f1;
-  }
 
-  main {
+main {
       background-color: lightgrey;
       padding: 10px;
-      display: block;
-
-  }
-
-footer {
-    background-color :rgb(76, 158, 235);
+      display: none;
+      border: 1px solid black;
 }
-.weatherbox{
+
+#weathercontainer{
     background-color: lightseagreen;
     width: 300px;
     padding: 10px;
     margin: 0 auto;
-    border: 3px solid black;
-    
+    border: 2px solid black;
+    display: none;
 }
-.attractionbox{
-    background-color: lightyellow;
-    width: 300px;
-    padding: 10px;
-    border: 3px solid black;
-    margin: 20px
-}
+
 .allattractionbox{
     background-color: lightyellow;
-    width: 300px;
+    width: 200px;
     padding: 10px;
-    border: 3px solid black;
-    margin: 20px
+    border: 2px solid black;
+    margin: 20px;
+    display: inline-block;
+}
+
+footer {
+    background-color :rgb(76, 158, 235);
 }
