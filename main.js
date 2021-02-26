@@ -80,8 +80,12 @@ function getAttractionsData(searchInput, date) {
     fetch("https://api.foursquare.com/v2/venues/search?client_id=N1QKMDBXOVR3JOEYXQAI3RKLS245YZC5JCHGFGZFEOX50F4F&client_secret=CNEQGCG5PY31BWZPLI1UPOP3XSZMQHNVVXDGYQG5SEQNT3GI&v="+date+"&near="+searchInput+"&intent=browse&radius=10000&limit=10")
         .then(response => response.json())
         .then(attractionData => {
-            readAllAttractionData(attractionData);
+        
+        .catch((error) => {
+            document.getElementById("maincontainer").innerText = "No data to show!"
+            
         })
+        readAllAttractionData(attractionData);
 }
 
 function readAllAttractionData(attractionData) {
@@ -94,11 +98,15 @@ function readAllAttractionData(attractionData) {
     venues.forEach(venue => {
         let htmlSegment = '<div class="allattractionbox">' + 
                             '<div>' + venue.name + '</div>' +
-                            '<img src=' + venue.categories[0].icon.prefix + "bg_32" + venue.categories[0].icon.suffix + '>' +
                             '<div>' + venue.location.formattedAddress + '</div>' +
+                            '<img src=' + venue.categories[0].icon.prefix + "bg_32" + venue.categories[0].icon.suffix + '>' +
                         '</div>';
         html += htmlSegment;
 
     });
     attractionContainer.innerHTML = html;
 }
+     
+    
+    
+    
